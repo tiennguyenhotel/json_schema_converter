@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# import
 import pandas
 import json
 import math
@@ -8,7 +7,7 @@ import os
 import pandas.io.sql as sqlio
 
 import sys
-
+print(sys.argv[1],sys.argv[2],sys.argv[3])
 
 class schema_converter:
     def __init__(self, pandas_data_frame):
@@ -285,15 +284,15 @@ class schema_converter:
                 no_dup.append(i)
         return no_dup
     def variable_to_json_file(self,json_variable,name="json_schema"):
-        desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-        json_file=open(os.path.join(desktop,f"{name}.json"),"w")
+        loc=os.getcwd()
+        json_file=open(os.path.join(loc,f"{name}.json"),"w")
         json_file.write(json_variable)
         json_file.close()
 
 
 
 
-file=pandas.read_excel(sys.argv[1],sys.argv[2])
+file=pandas.read_excel("{}".format(sys.argv[1]),"{}".format(sys.argv[2]))
 convert_engine=schema_converter(file)
 a=convert_engine.get_json_schema_variable()[0]
-convert_engine.variable_to_json_file(a,name=sys.argv[3])
+convert_engine.variable_to_json_file(a,name="{}".format(sys.argv[3]))
