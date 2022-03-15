@@ -1,4 +1,5 @@
- # import
+#!/usr/bin/env python3
+# import
 import pandas
 import json
 import math
@@ -7,6 +8,7 @@ import os
 import pandas.io.sql as sqlio
 
 import sys
+
 
 class schema_converter:
     def __init__(self, pandas_data_frame):
